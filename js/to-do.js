@@ -27,6 +27,7 @@ let lowContainer = document.querySelector("#lowContainer");
 let mediumContainer = document.querySelector("#mediumContainer");
 let highContainer = document.querySelector("#highContainer");
 
+let makeToDoLinkNoList = document.querySelector("#makeToDoLinkNoList");
 let makeToDoLink = document.querySelector("#makeToDoLink");
 
 let currentId = 0;
@@ -63,18 +64,18 @@ async function loadUsers() {
 }
 
 async function loadUserData() {
-    lowPriorityTasks = 0;
-    mediumPriorityTasks = 0;
-    highPriorityTasks = 0;
-    completeTasks = 0;
-    incompleteTasks = 0;
+   lowPriorityTasks = 0;
+   mediumPriorityTasks = 0;
+   highPriorityTasks = 0;
+   completeTasks = 0;
+   incompleteTasks = 0;
 
    let response = await fetch("http://localhost:8083/api/users");
    let data = await response.json();
 
    let currentUserData = data.find((user) => user.id == userSelect.value);
    console.log(currentUserData);
-   
+
    userText.innerText = currentUserData.name;
    userNameText.innerText = currentUserData.username;
    userIDText.innerText = currentUserData.id;
@@ -87,18 +88,18 @@ async function loadUserData() {
    }
 
    currentId = currentUserData.id;
+   makeToDoLinkNoList.href = `http://127.0.0.1:5500/new_todos.html?userid=${currentUserData.id}`;
    makeToDoLink.href = `http://127.0.0.1:5500/new_todos.html?userid=${currentUserData.id}`;
-    loadUsersToDos();
-    
+   loadUsersToDos();
 }
 
 async function loadUsersToDos() {
-     lowPriorityTasks = 0;
-     mediumPriorityTasks = 0;
-     highPriorityTasks = 0;
-     completeTasks = 0;
-    incompleteTasks = 0;
-    
+   lowPriorityTasks = 0;
+   mediumPriorityTasks = 0;
+   highPriorityTasks = 0;
+   completeTasks = 0;
+   incompleteTasks = 0;
+
    //grabbing the user todos
    let response = await fetch("http://localhost:8083/api/todos/byuser/" + currentId);
    let data = await response.json();
@@ -109,17 +110,19 @@ async function loadUsersToDos() {
 
    for (const listIrem of data) {
       createCard(listIrem.category, listIrem.completed, listIrem.priority, listIrem.description, listIrem.deadline);
-    }
+   }
 
-    let completedPercent = (completeTasks / (incompleteTasks + completeTasks)) * 100;
-    if (String(completedPercent) != "NaN") {
-        finishedText.innerText = completedPercent + "%"
-        makeToDoLink.style.display = "none";
-    } else {
-        finishedText.innerText = "You have no tasks! Make some tasks to get started."
-        makeToDoLink.style.display = "block"
-    }
-    updatePriorityContainersVisibility();
+   let completedPercent = (completeTasks / (incompleteTasks + completeTasks)) * 100;
+   if (String(completedPercent) != "NaN") {
+      finishedText.innerText = completedPercent + "%";
+      makeToDoLinkNoList.style.display = "none";
+      makeToDoLink.style.display = "block";
+   } else {
+      finishedText.innerText = "You have no tasks! Make some tasks to get started.";
+      makeToDoLinkNoList.style.display = "block";
+      makeToDoLink.style.display = "none";
+   }
+   updatePriorityContainersVisibility();
 }
 
 function createCard(category, isCompleted, priority, description, deadline) {
@@ -181,13 +184,13 @@ function createCard(category, isCompleted, priority, description, deadline) {
    card.appendChild(cardFooter);
    switch (priority) {
       case "High":
-        highCardContainer.appendChild(card)
+         highCardContainer.appendChild(card);
          break;
       case "Medium":
-        mediumCardContainer.appendChild(card);
+         mediumCardContainer.appendChild(card);
          break;
       default:
-        lowCardContainer.appendChild(card);
+         lowCardContainer.appendChild(card);
    }
 
    incrementPriorityCounter(priority, isCompleted);
@@ -232,4 +235,3 @@ function updatePriorityContainersVisibility() {
    document.querySelector("#mediumPriorityCount").innerText = ` ${mediumPriorityTasks}`;
    document.querySelector("#highPriorityCount").innerText = ` ${highPriorityTasks}`;
 }
-
