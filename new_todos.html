@@ -23,41 +23,45 @@
 
       <main>
          <div class="custom-container">
-    <h2 class="text-center">Add To-Do</h2>
+            <div class="mb-4 text-center">
+               <h2 style="display: inline" class="text-center">Add a New To-Do for </h2>
+               <h2 style="display: inline-block" id="usernameDisplay" class="fw-bolder">masermind</h2>
+            </div>
 
-    <form id="addTodoForm">
-      <div class="form-group">
-        <label for="category">Category</label>
-        <input type="text" id="category" name="category" required />
-      </div>
+            <form id="addTodoForm">
+               <div class="form-group">
+                  <label for="priority">Priority</label>
+                  <select id="priority" name="priority" required>
+                     <option value="High">High</option>
+                     <option value="Medium">Medium</option>
+                     <option value="Low">Low</option>
+                  </select>
+               </div>
 
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea id="description" name="description" required></textarea>
-      </div>
+               <div class="form-group">
+                  <label for="category">Type of Task</label>
+                  <select name="category" id="category">
+                     <option value="Work Task">Work</option>
+                     <option value="Personal Task">Personal</option>
+                     <option value="Finnacial Task">Finnacial</option>
+                     <option value="Household Task">Household</option>
+                     <option value="Errand">Errand</option>
+                  </select>
+               </div>
 
-      <div class="form-group">
-        <label for="deadline">Deadline</label>
-        <input type="date" id="deadline" name="deadline" required />
-      </div>
+               <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea id="description" name="description" required rows="2" cols="67"></textarea>
+               </div>
 
-      <div class="form-group">
-        <label for="priority">Priority</label>
-        <select id="priority" name="priority" required>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
-      </div>
+               <div class="form-group">
+                  <label for="deadline">Deadline</label>
+                  <input type="date" id="deadline" name="deadline" required />
+               </div>
 
-      <div class="form-group">
-        <label for="completed">Completed</label>
-        <input type="checkbox" id="completed" name="completed" />
-      </div>
-
-      <button type="submit">Add To-Do</button>
-    </form>
-  </div>
+               <button type="submit">Add To-Do</button>
+            </form>
+         </div>
       </main>
 
       <script src="js/new-to-dos.js"></script>
