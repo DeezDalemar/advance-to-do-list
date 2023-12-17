@@ -109,11 +109,22 @@ async function loadUsersToDos() {
    highCardContainer.innerHTML = " ";
 
    for (const listIrem of data) {
-      createCard(listIrem.category, listIrem.completed, listIrem.priority, listIrem.description, listIrem.deadline, listIrem.id);
+      createCard(
+         listIrem.category,
+         listIrem.completed,
+         listIrem.priority,
+         listIrem.description,
+         listIrem.deadline,
+         listIrem.id
+      );
    }
 
    let completedPercent = (completeTasks / (incompleteTasks + completeTasks)) * 100;
-   if (String(completedPercent) != "NaN") {
+   if (completedPercent == 100) {
+      finishedText.innerText = Math.round(completedPercent) + "% Congradulation, maybe you dont need us anymore 😭";
+      makeToDoLinkNoList.style.display = "none";
+      makeToDoLink.style.display = "block";
+   } else if (String(completedPercent) != "NaN") {
       finishedText.innerText = Math.round(completedPercent) + "%";
       makeToDoLinkNoList.style.display = "none";
       makeToDoLink.style.display = "block";
@@ -128,12 +139,11 @@ async function loadUsersToDos() {
 function createCard(category, isCompleted, priority, description, deadline, id) {
    let card = document.createElement("div");
    card.className = "card mb-3";
-   card.value = id
+   card.value = id;
    card.addEventListener("click", () => markComplete(card.value));
 
    let cardHeader = document.createElement("div");
    cardHeader.className = "card-header";
-
 
    let checkOrXImage = document.createElement("img");
    checkOrXImage.className = "smallImage";
@@ -144,7 +154,7 @@ function createCard(category, isCompleted, priority, description, deadline, id) 
       checkOrXImage.src = "imgs/image_2023-12-16_235826163-removebg-preview.png";
       checkOrXImage.alt = "X";
    }
-   checkOrXImage.style.float = "right"; 
+   checkOrXImage.style.float = "right";
    checkOrXImage.style.marginLeft = "10px";
 
    // Add category text
