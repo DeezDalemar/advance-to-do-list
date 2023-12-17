@@ -51,13 +51,15 @@
                      <div id="userTabData">
                         <strong>Percent of Tasks Complete: </strong>
                         <p class="card-text" id="finishedText"></p>
-                        <a href="new_todos.html" style="display: none;" id="makeToDoLinkNoList" class="mb-2">Dont have any tasks? Click here!</a>
+                        <a href="new_todos.html" style="display: none" id="makeToDoLinkNoList" class="mb-2"
+                           >Dont have any tasks? Click here!</a
+                        >
                         <strong>Username: </strong>
                         <p class="card-text" id="userNameText"></p>
                         <strong>User ID: </strong>
                         <p class="card-text" id="userIDText"></p>
-                        <br>
-                        <a href="new_todos.html" id="makeToDoLink">+Add ToDo</a>
+                        <br />
+                        <a href="new_todos.html" id="makeToDoLink">+ Add ToDo</a>
                      </div>
 
                      <div id="infoTabData" style="display: none">
@@ -70,23 +72,33 @@
                      </div>
                   </div>
                </div>
-               <p>Note: Clicking on a task marks it complete or incomplete. This process refreshes the page.</p>
+               <br>
+               <div class="d-flex">
+                  <p class="fw-bolder">Note: </p>
+                  <p class="text-danger"> Clicking on a task marks it complete or incomplete. This process refreshes the page.</p>
+               </div>
             </div>
 
             <div class="col-md-6">
                <details class="w-100" id="lowContainer">
-                <summary><h3>Low Priority<span id="lowPriorityCount" class="text-success"> {0} </span></h3></summary>
-                <div id="lowCardContainer"></div>
+                  <summary>
+                     <h3>Low Priority<span id="lowPriorityCount" class="text-success"> {0} </span></h3>
+                  </summary>
+                  <div id="lowCardContainer"></div>
                </details>
 
                <details class="w-100" id="mediumContainer">
-                <summary><h3>Medium Priority<span id="mediumPriorityCount" class="text-warning"> {0} </span></h3></summary>
-                <div id="mediumCardContainer"></div>
+                  <summary>
+                     <h3>Medium Priority<span id="mediumPriorityCount" class="text-warning"> {0} </span></h3>
+                  </summary>
+                  <div id="mediumCardContainer"></div>
                </details>
 
                <details class="w-100" id="highContainer">
-                <summary><h3>High Priority<span id="highPriorityCount" class="text-danger"> {0} </span></h3></summary>
-                <div id="highCardContainer"></div>
+                  <summary>
+                     <h3>High Priority<span id="highPriorityCount" class="text-danger"> {0} </span></h3>
+                  </summary>
+                  <div id="highCardContainer"></div>
                </details>
             </div>
          </div>

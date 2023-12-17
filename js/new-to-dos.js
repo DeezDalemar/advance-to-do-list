@@ -27,6 +27,7 @@ function init() {
 
     console.log(userID);
     grabUsername()
+    loadCategoryList()
 }
 
 async function addToDoItem() {
@@ -63,4 +64,14 @@ async function grabUsername() {
 
     let currentUserData = data.find((user) => user.id == userID);
     usernameDisplay.innerText = currentUserData.username
+}
+
+async function loadCategoryList() {
+    let response = await fetch("http://localhost:8083/api/categories");
+    let data = await response.json()
+
+    for (const category of data) {
+        let option = new Option(category.name, category.name)
+        categorySelect.appendChild(option)
+    }
 }
