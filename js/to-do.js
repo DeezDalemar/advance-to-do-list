@@ -114,7 +114,7 @@ async function loadUsersToDos() {
 
    let completedPercent = (completeTasks / (incompleteTasks + completeTasks)) * 100;
    if (String(completedPercent) != "NaN") {
-      finishedText.innerText = completedPercent + "%";
+      finishedText.innerText = Math.round(completedPercent) + "%";
       makeToDoLinkNoList.style.display = "none";
       makeToDoLink.style.display = "block";
    } else {
@@ -133,11 +133,26 @@ function createCard(category, isCompleted, priority, description, deadline) {
    let cardHeader = document.createElement("div");
    cardHeader.className = "card-header";
 
+   // Add check mark or x image
+   let checkOrXImage = document.createElement("img");
+   checkOrXImage.className = "smallImage";
+   if (isCompleted) {
+      checkOrXImage.src = "imgs/checkmark-removebg-preview.png";
+      checkOrXImage.alt = "Check Mark";
+   } else {
+      checkOrXImage.src = "imgs/image_2023-12-16_235826163-removebg-preview.png";
+      checkOrXImage.alt = "X";
+   }
+   checkOrXImage.style.float = "right"; // Float to the right
+   checkOrXImage.style.marginLeft = "10px"; // Add some margin for spacing
+
+   // Add category text
    let cardTitle = document.createElement("h4");
    cardTitle.className = "card-title";
    cardTitle.style.display = "inline";
    cardTitle.innerText = category;
 
+   // Add isCompleted text
    let isCompletedText = document.createElement("p");
    if (isCompleted) {
       isCompletedText.innerText = "Complete";
@@ -145,19 +160,18 @@ function createCard(category, isCompleted, priority, description, deadline) {
       isCompletedText.innerText = "Incomplete";
    }
 
+   // Add priority text
    let priorityText = document.createElement("p");
-   switch (priority) {
-      case "High":
-         priorityText.className = "text-danger";
-         break;
-      case "Medium":
-         priorityText.className = "text-warning";
-         break;
-      default:
-         priorityText.className = "text-success";
+   if (priority === "High") {
+      priorityText.className = "text-danger";
+   } else if (priority === "Medium") {
+      priorityText.className = "text-warning";
+   } else {
+      priorityText.className = "text-success";
    }
    priorityText.innerText = priority;
 
+   cardHeader.appendChild(checkOrXImage); // Append the check mark or x image
    cardHeader.appendChild(cardTitle);
    cardHeader.appendChild(isCompletedText);
    cardHeader.appendChild(priorityText);
@@ -182,15 +196,14 @@ function createCard(category, isCompleted, priority, description, deadline) {
    card.appendChild(cardHeader);
    card.appendChild(cardBody);
    card.appendChild(cardFooter);
-   switch (priority) {
-      case "High":
-         highCardContainer.appendChild(card);
-         break;
-      case "Medium":
-         mediumCardContainer.appendChild(card);
-         break;
-      default:
-         lowCardContainer.appendChild(card);
+
+   // Append the card to the appropriate container based on priority
+   if (priority === "High") {
+      highCardContainer.appendChild(card);
+   } else if (priority === "Medium") {
+      mediumCardContainer.appendChild(card);
+   } else {
+      lowCardContainer.appendChild(card);
    }
 
    incrementPriorityCounter(priority, isCompleted);

@@ -62,3 +62,8 @@ a.navLinks:hover{
       color: #fff;
       cursor: pointer;
     }
+
+    .smallImage{
+      width: 1rem;
+      
+    }
