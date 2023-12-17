@@ -109,7 +109,7 @@ async function loadUsersToDos() {
    highCardContainer.innerHTML = " ";
 
    for (const listIrem of data) {
-      createCard(listIrem.category, listIrem.completed, listIrem.priority, listIrem.description, listIrem.deadline);
+      createCard(listIrem.category, listIrem.completed, listIrem.priority, listIrem.description, listIrem.deadline, listIrem.id);
    }
 
    let completedPercent = (completeTasks / (incompleteTasks + completeTasks)) * 100;
@@ -125,15 +125,16 @@ async function loadUsersToDos() {
    updatePriorityContainersVisibility();
 }
 
-function createCard(category, isCompleted, priority, description, deadline) {
-   // Create card elements
+function createCard(category, isCompleted, priority, description, deadline, id) {
    let card = document.createElement("div");
    card.className = "card mb-3";
+   card.value = id
+   card.addEventListener("click", () => markComplete(card.value));
 
    let cardHeader = document.createElement("div");
    cardHeader.className = "card-header";
 
-   // Add check mark or x image
+
    let checkOrXImage = document.createElement("img");
    checkOrXImage.className = "smallImage";
    if (isCompleted) {
@@ -143,8 +144,8 @@ function createCard(category, isCompleted, priority, description, deadline) {
       checkOrXImage.src = "imgs/image_2023-12-16_235826163-removebg-preview.png";
       checkOrXImage.alt = "X";
    }
-   checkOrXImage.style.float = "right"; // Float to the right
-   checkOrXImage.style.marginLeft = "10px"; // Add some margin for spacing
+   checkOrXImage.style.float = "right"; 
+   checkOrXImage.style.marginLeft = "10px";
 
    // Add category text
    let cardTitle = document.createElement("h4");
@@ -247,4 +248,12 @@ function updatePriorityContainersVisibility() {
    document.querySelector("#lowPriorityCount").innerText = ` ${lowPriorityTasks}`;
    document.querySelector("#mediumPriorityCount").innerText = ` ${mediumPriorityTasks}`;
    document.querySelector("#highPriorityCount").innerText = ` ${highPriorityTasks}`;
+}
+
+async function markComplete(id) {
+   let response = await fetch(`http://localhost:8083/api/todos/${id}`, {
+      method: "PUT",
+   });
+
+   window.location.assign("http://127.0.0.1:5500/todos.html");
 }
