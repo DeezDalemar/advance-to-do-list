@@ -38,6 +38,8 @@ async function addToDoItem() {
             },
             body: JSON.stringify(getFormData()),
         });
+
+        window.location.assign("http://127.0.0.1:5500/todos.html");
     } else {
         console.log("Welp smthn went wrong");
     }
