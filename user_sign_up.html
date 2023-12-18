@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Sign Up</title>
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+         crossorigin="anonymous"
+      />
+      <link rel="stylesheet" href="css/stylesheet.css" />
+   </head>
+   <body>
+      <header class="container-fluid border-bottom mb-3">
+         <h1>Sign Up</h1>
+         <nav>
+            <a href="index.html" class="navLinks">Home</a>
+            <a href="todos.html" class="navLinks">To-Dos</a>
+
+            <a href="" class="float-end me-3 navLinks">Sign Up</a>
+         </nav>
+      </header>
+
+      <main>
+         <div class="custom-container">
+            <div class="mb-4 text-center">
+               <h2 class="text-center">Welcome to "Stay Orginized"</h2>
+            </div>
+
+            <form id="userSignUpForm">
+               <div class="form-group">
+                  <label for="name">Name (Full Name)</label>
+                  <input type="text" required id="name" autocomplete="given-name" />
+               </div>
+
+               <div class="form-group">
+                  <label for="username">New Username</label>
+                  <input type="text" required id="username" autocomplete="off" />
+               </div>
+
+               <br /><br />
+
+               <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <div class="password-input-wrapper">
+                     <input type="password" required id="newPassword" autocomplete="new-password" />
+                     <span class="password-toggle" id="togglePassword"><img class="eye-image" id="passwordEye" src="imgs/eye.png"></span>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <div class="password-input-wrapper">
+                     <input type="password" id="confirmPassword" autocomplete="new-password" />
+                     <span class="password-toggle" id="toggleConfirmPassword"><img class="eye-image" id="confirmPasswordEye" src="imgs/eye.png"></span>
+                  </div>
+               </div>
+
+               <p class="text-danger" id="passwordFailureMessage" style="display: none">
+                  Those passwords did not match, try again.
+               </p>
+
+               <br />
+
+               <button type="submit" id="submitButton" class="bg-gradient bg-success">Sign Up</button>
+            </form>
+         </div>
+      </main>
+
+      <script src="js/user_creation.js"></script>
+   </body>
+</html>

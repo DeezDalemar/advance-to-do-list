@@ -1,69 +1,85 @@
-body{
-    background-color: rgb(26, 24, 24);
-    color: white;
+body {
+   background-color: rgb(26, 24, 24);
+   color: white;
 }
 
-.navLinks{
-    color: rgb(187, 179, 179);
-    text-decoration: none;
+.navLinks {
+   color: rgb(187, 179, 179);
+   text-decoration: none;
 }
 
-a.navLinks:hover{
-    color: grey;
+a.navLinks:hover {
+   color: grey;
 }
 
-#userSelect{
-    height: 2.5rem;
+#userSelect {
+   height: 2.5rem;
 }
 
-#infoCard{
-    min-width: 20rem;
+#infoCard {
+   min-width: 20rem;
 }
 
- #lowContainer,
-   #mediumContainer,
-   #highContainer {
-      display: none;
-   }
+#lowContainer,
+#mediumContainer,
+#highContainer {
+   display: none;
+}
 
-    body {
-      font-family: 'Arial', sans-serif;
-      padding: 20px;
-    }
+body {
+   font-family: "Arial", sans-serif;
+   padding: 20px;
+}
 
-    .custom-container {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background: #252525;
-    }
+.custom-container {
+   max-width: 600px;
+   margin: auto;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   background: #252525;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+.form-group {
+   margin-bottom: 20px;
+}
 
-    label {
-      font-weight: bold;
-    }
+label {
+   font-weight: bold;
+}
 
-    select,
-    input,
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      box-sizing: border-box;
-    }
+select,
+input,
+button {
+   width: 100%;
+   padding: 10px;
+   margin-top: 5px;
+   box-sizing: border-box;
+}
 
-    button {
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-    }
+button {
+   background-color: #007bff;
+   color: #fff;
+   cursor: pointer;
+}
 
-    .smallImage{
-      width: 1rem;
-      
-    }
+.smallImage {
+   width: 1rem;
+}
+
+.eye-image {
+   width: 1.5rem;
+}
+
+.password-input-wrapper {
+   position: relative;
+}
+
+.password-toggle {
+   cursor: pointer;
+   user-select: none;
+   position: absolute;
+   right: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+}
